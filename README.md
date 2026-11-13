@@ -35,7 +35,7 @@ Windows: `gradlew.bat assembleDebug testDebugUnitTest lintDebug`
 
 Linux/macOS: `bash gradlew assembleDebug testDebugUnitTest lintDebug`
 
-O workflow **Android Debug APK** compila, executa testes unitários e lint, publicando o artefato `EntregaCEP-debug` na página da execução em Actions. O APK gerado é `app/build/outputs/apk/debug/app-debug.apk`.
+O workflow **Android Debug APK** compila, executa testes unitários, lint e testes instrumentados em emulador Android API 29, publicando o artefato `EntregaCEP-debug` na página da execução em Actions. O APK gerado é `app/build/outputs/apk/debug/app-debug.apk`.
 
 Testes unitários cobrem normalização/validação de CEP, cadastro inválido, soft delete/restauração e integração Retrofit/OkHttp com servidor HTTP de teste. O teste instrumentado `RoomPersistenceTest` reabre um banco em disco e verifica edição, exclusão lógica e restauração. Execute-o com aparelho/emulador conectado: `gradlew.bat connectedDebugAndroidTest`.
 

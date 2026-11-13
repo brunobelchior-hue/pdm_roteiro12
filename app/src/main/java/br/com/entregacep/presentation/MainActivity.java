@@ -15,10 +15,10 @@ public class MainActivity extends ComponentActivity {
         LinearLayout root=Ui.page(this,trash?"Lixeira":"Pontos de entrega",trash?"Registros preservados. Restaure quando precisar.":"Organize endereços e instruções para cada destino.");
         Ui.button(this,root,trash?"Voltar aos pontos":"+ Novo ponto de entrega",v->{if(trash)finish();else startActivity(new Intent(this,EditorActivity.class));});
         if(!trash)Ui.button(this,root,"Abrir lixeira",v->startActivity(new Intent(this,MainActivity.class).putExtra("trash",true)));
-        ScrollView scroll=new ScrollView(this);list=new LinearLayout(this);list.setOrientation(1);scroll.addView(list);root.addView(scroll,new LinearLayout.LayoutParams(-1,0,1));
+        ScrollView scroll=new ScrollView(this);list=new LinearLayout(this);list.setOrientation(LinearLayout.VERTICAL);scroll.addView(list);root.addView(scroll,new LinearLayout.LayoutParams(-1,0,1));
         vm=new ViewModelProvider(this).get(DeliveryViewModel.class);
         vm.points.observe(this,points->{list.removeAllViews();if(points.isEmpty())list.addView(Ui.text(this,trash?"A lixeira está vazia.":"Nenhum ponto cadastrado. Comece consultando um CEP.",18));for(DeliveryPoint p:points){
-            LinearLayout card=new LinearLayout(this);card.setOrientation(1);card.setPadding(16,20,16,20);list.addView(card);
+            LinearLayout card=new LinearLayout(this);card.setOrientation(LinearLayout.VERTICAL);card.setPadding(16,20,16,20);list.addView(card);
             card.addView(Ui.text(this,p.name,22));card.addView(Ui.text(this,p.recipient+"\n"+p.street+", "+p.number+" "+p.complement+"\n"+p.neighborhood+" · "+p.city+"/"+p.state+"\nCEP "+p.cep,16));
             if(!p.instructions.isEmpty())card.addView(Ui.text(this,"Entrega: "+p.instructions,15));
             if(trash)Ui.button(this,card,"Restaurar ponto",v->vm.toggle(p.id,true,true));

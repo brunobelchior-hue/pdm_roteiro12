@@ -12,7 +12,7 @@ public class EditorActivity extends ComponentActivity {
     @Override public void onCreate(Bundle state){
         super.onCreate(state);id=getIntent().getLongExtra("id",0);
         LinearLayout root=Ui.page(this,id==0?"Novo destino":"Editar destino","Consulte o CEP e complete os detalhes da entrega.");
-        ScrollView scroll=new ScrollView(this);LinearLayout form=new LinearLayout(this);form.setOrientation(1);scroll.addView(form);root.addView(scroll,new LinearLayout.LayoutParams(-1,0,1));
+        ScrollView scroll=new ScrollView(this);LinearLayout form=new LinearLayout(this);form.setOrientation(LinearLayout.VERTICAL);scroll.addView(form);root.addView(scroll,new LinearLayout.LayoutParams(-1,0,1));
         String[] labels={"Nome do ponto *","Destinatário *","CEP *","Rua *","Número * (ou S/N)","Complemento","Bairro","Cidade *","UF *","Instruções de entrega","Referência de entrega"};
         // The final reference is combined with instructions when saved.
         vm=new ViewModelProvider(this).get(EditorViewModel.class);

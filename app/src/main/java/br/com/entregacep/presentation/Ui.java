@@ -6,7 +6,7 @@ import android.widget.*;
 final class Ui {
     static final int INK=Color.rgb(18,43,54), TEAL=Color.rgb(0,103,105);
     static LinearLayout page(Activity a,String title,String subtitle) {
-        LinearLayout root=new LinearLayout(a); root.setOrientation(1); root.setPadding(24,36,24,20); root.setBackgroundColor(Color.rgb(246,248,248));
+        LinearLayout root=new LinearLayout(a); root.setOrientation(LinearLayout.VERTICAL); root.setPadding(24,36,24,20); root.setBackgroundColor(Color.rgb(246,248,248));
         TextView brand=text(a,"ENTREGA CEP",14); brand.setTextColor(TEAL); root.addView(brand);
         TextView heading=text(a,title,28); heading.setPadding(0,20,0,8); root.addView(heading);
         root.addView(text(a,subtitle,15)); a.setContentView(root); return root;

@@ -7,6 +7,14 @@ import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 @RunWith(AndroidJUnit4.class)
 public class RoomPersistenceTest {
+    @Test public void applicationScreensOpen(){
+        android.app.Instrumentation instrumentation=InstrumentationRegistry.getInstrumentation();
+        android.content.Context context=instrumentation.getTargetContext();
+        android.app.Activity list=instrumentation.startActivitySync(new android.content.Intent(context,br.com.entregacep.presentation.MainActivity.class).addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK));
+        assertNotNull(list);
+        android.app.Activity editor=instrumentation.startActivitySync(new android.content.Intent(context,br.com.entregacep.presentation.EditorActivity.class).addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK));
+        instrumentation.runOnMainSync(()->{assertNotNull(editor.findViewById(102));editor.finish();list.finish();});
+    }
     @Test public void editAndSoftDeleteSurviveDatabaseReopen(){
         android.content.Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();
         String name="persistence-test-"+System.nanoTime()+".db";
